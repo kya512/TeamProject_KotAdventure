@@ -19,7 +19,7 @@ class Jeu(monstres: List<Personnage>) {
         // Pour chaque monstre dans la liste de monstres
         for (unMonstre in monstres){
             // On créer un combat
-            val unCombat= Combat(this,unMonstre)
+            val unCombat = Combat(this,unMonstre, this.joueur)
             combats.add(unCombat)
         }
     }
@@ -44,12 +44,69 @@ class Jeu(monstres: List<Personnage>) {
      *
      */
     fun creerPersonnage(): Personnage {
-        println("Création votre personnage:")
+        println("\u001b[38;2;255;0;0m")
+        println("\u001b[1m")
+        println("Création de votre personnage:")
+        println("\u001b[0m")
+
+        println("\u001b[1m")
+        println("\u001b[38;2;243;225;255m")
         // TODO Mission 1.1
-        val hero = Personnage("YYY",150,150,12,8,8,12)
-        this.joueur= hero
+        println("Entrez le nom : ")
+        var nom = readln().toString()
+
+        var attaque :Int = 0
+        var defense :Int = 0
+        var endurance :Int = 0
+        var vitesse :Int = 0
+
+        var total : Int = 0 //Total des points
+ //Si le total des points depasse 40, les points se réinitialisent
+
+
+        do {
+            println("Vous avez 40 points à répartir sur vos compétences ( attaque / defense / endurance / vitesse ) ")
+
+            println("Entrez votre niveau d'attaque : ")
+            attaque = readln().toInt()
+            total+= attaque
+            println("il vous reste ${40-total}")
+
+            println("Entrez votre niveau de defense : ")
+            defense = readln().toInt()
+            total+= defense
+            println("il vous reste ${40-total}")
+
+            println("Entrez votre niveau d'endurance : ")
+            endurance = readln().toInt()
+            total+= endurance
+            println("il vous reste ${40-total}")
+
+            println("Entrez votre niveau de vitesse : ")
+            vitesse = readln().toInt()
+            total+= vitesse
+            println("il vous reste ${40-total}")
+
+            if (total > 40){
+                println( "Vous avez dépassé votre total de points, veuillez ressaisir vos point en respectant la limite")
+                total = 0
+            }
+
+        } while (total == 0)
+
+
+        var pointDeVie = 50 //Total des points
+        var pointDeVieMax = pointDeVie + 10*endurance // Point de vie max
+        println("\u001b[0m")
+        println("\u001b[1m")
+        println("\u001b[38;5;${10}m")
+        println("Vous avez $pointDeVie pv et $pointDeVieMax de pv Max")
+        println("\u001b[0m")
+        val hero = Personnage(nom,pointDeVie,pointDeVieMax,attaque,defense,endurance,vitesse)
+        this.joueur = hero
+
         return hero
     }
-    
+
 
 }
