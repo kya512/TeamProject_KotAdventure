@@ -30,7 +30,7 @@ class Voleur(
             toString()
 
 
-            println("Vous avez dérober une arme à $victime.\n" + "Vous avez dérober une armure à $victime.")
+            println("Vous avez dérober une arme à ${victime.nom}\n" + "Vous avez dérober une armure à ${victime.nom}.")
         }
     }
 }
