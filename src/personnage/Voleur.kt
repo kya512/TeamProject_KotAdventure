@@ -25,8 +25,8 @@ class Voleur(
             this.inventaire.add(item)
             // on le retire de l'inventaire de la victime
             victime.inventaire.remove(item)
-            if ( item == armeEquipe)  victime.armeEquipe=null
-            if ( item == armureEquipe)  victime.armureEquipe=null
+            if ( item == victime.armeEquipe)  victime.armeEquipe=null // si l'item est l'arme équipée de la victime, on le lui retire 
+            if ( item == victime.armureEquipe)  victime.armureEquipe=null // idem pour l'armure 🤣
             toString()
 
 
